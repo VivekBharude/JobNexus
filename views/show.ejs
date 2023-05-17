@@ -1,0 +1,102 @@
+<%- include('./partials/header.ejs') %>
+<link rel="stylesheet" href="/style.css">
+<div style="padding-top: 100px; padding-bottom: 150px; background-image: url(/images/showjob.jpg); background-repeat: no-repeat; background-position: 50% 25%;" class="online-cv section-overly pt-90 pb-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="cv-caption text-center">
+                    <p class="pera2 mt-5">
+                        <%= job.name %>
+                    </p>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+<div class="container mt-4 ">
+    <div class="row">
+    <div class="card border-dark mb-3 col-md-6" >
+        <div class="card-header bg-transparent border-success row align-items-center">
+            <div class="col-md-4">
+                <img src="<%= job.image %>" class="img-fluid rounded-start" alt="...">
+              </div>
+            <div class="col-md-8 ">
+                  <h1 class="card-title"><%= job.name %></h1>
+            </div>
+        </div>
+        <div class="card-body text-success">
+    
+            <ol class="list-group ">
+            <div class="row">
+                <div class="col-md-6">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">      
+                          <div class="fw-bold"> <i class="me-2 fas fa-map-marker-alt"></i> Location</div>
+                          <div class="ms-4"><%= job.address %></div>
+                        </div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold"> <i class=" me-2 far fa-clock"></i>Job Type</div>
+                          <div class="ms-4"><%= job.type %></div>
+                        </div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold"><i class="me-1 far fa-money-bill-alt"></i>Salary</div>
+                          <div class="ms-4"><%= job.package %></div>
+                        </div>
+                      </li>
+    
+                </div>
+                <div class="col-md-6">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold"><i class="me-2 fas fa-hourglass-half"></i>Deadline</div>
+                          <div class="ms-4"> <%= job.deadline.toDateString() %></div>
+                        </div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold"><i class='far fa-lightbulb'></i> Required CGPA</div>
+                          <div class="ms-4"> <%= job.cgpa %></div>
+                        </div>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                          <div class="fw-bold"><i class="mt-2 me-2 fas fa-bolt"></i>Posted On</div>
+                          <div class="ms-4"> <%= moment(job.createdAt).fromNow() %> </div>
+                        </div>
+                      </li>
+    
+                </div>
+            </div>    
+              </ol>
+        </div>
+    
+        <div class="card-footer bg-transparent border-success row justify-content-center">
+              <div class="col-md-3 ms-2"><a href="/jobs/<%= job._id %>/apply" class="btn btn-info">apply</a></div>
+              <% if (currentUser && currentUser.isAdmin) { %>
+              <div class="col-md-3 ms-2"><a class="btn btn-warning " href="/jobs/<%= job._id %>/edit">edit</a></div>
+              <div class="col-md-3 ms-2"> <form action="/jobs/<%= job._id %>?_method=DELETE" method="post">
+                <input class="btn btn-danger " type="submit" value="delete">
+            </form></div>
+            <% } %>
+        </div>
+        </div>
+     <div class="col-md-6">
+        <% if (currentUser && currentUser.isAdmin) { %>
+            <h2>list of students that have applied</h2>
+            <ul class="list-group list-group-flush">
+                <% for( let student of job.appliedUsers) { %>
+                <li class="list-group-item"><%= student.username %></li>
+                <% } %>
+            <% } %>
+              </ul>
+            
+
+     </div>
+
+    </div>
+</div>
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,47 @@
+<%- include('./partials/header.ejs') %>
+<div style="height: 48rem;">
+    <div class="banner home " >
+        <div class="container">
+        <div class="row " >
+            <div class="col-md-4">
+                <div class="index-content">
+                    <h1 class="fw-bold">We'll help you find your <span>desired job</span></h1>
+                    <p class="fs-4 lead">Find Jobs, Employment & Career Opportunities</p>
+                    <br>
+                    <div class="job-search-field">
+                        <div class="job-search-item">
+                            <form action="/jobs" method="GET" class="form row">
+                                <div class="col-lg-8">
+                                    <div class="form-group mb-3">
+                                        <div class=" ">
+                                            <label class="form-label">What</label>
+                                            <span class="">e.g. job, company</span>
+                                        </div>
+                                        <div class="position-relative left-icon">
+                                            <input type="text" class="form-control" name="search" placeholder="Job title, or company">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group form-action ">
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-search"></i> Find Jobs</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div>   -->
+        <div  class="col-md-4">
+            <div class="img-style">
+                <img src="/images/banner.png" alt="" height="600rem" >
+            </div>
+        </div>
+
+    </div>
+    </div>
+    </div>
+</div>
+<%- include('./partials/footer.ejs') %>
